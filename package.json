@@ -7,19 +7,29 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node .",
+    "start": "tsc && node dist/src",
+    "start:prod": "node dist",
+    "build": "tsc",
+    "tsc:init": "tsc --init",
     "lint": "eslint .",
     "lint:commit": "commitlint -f -t",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "inversify": "^4.13.0",
+    "lodash": "^4.17.11",
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
+    "@types/node": "^10.10.3",
     "eslint": "^5.3.0",
     "husky": "^0.14.3",
-    "standard-version": "^4.4.0"
+    "nodemon": "^1.18.4",
+    "standard-version": "^4.4.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3"
   }
 }

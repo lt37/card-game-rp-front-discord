@@ -195,3 +195,4 @@ typings/
 
 # This file may contain sensitive information (like bot token)
 secrets.json
+secrets.ts

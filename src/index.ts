@@ -1,38 +1,37 @@
+import { Config } from '../config';
+import { Secrets } from '../secrets';
+
 const fs = require('fs');
 const Discord = require('discord.js');
-const env = require('../config.json');
 
 // This file contains 'secret' things, such as the bot's token.
 // For obvious reasons, I am not sharing it, and neither should you. It IS in the .gitignore file :)
-const secrets = require('../secrets.json');
-
-const client = new Discord.Client();
-const prefix = env.prefix;
+export const Client = new Discord.Client();
 
 
 // Creates a map that associates each commands to its name.
-client.commands = new Discord.Collection();
+Client.commands = new Discord.Collection();
 addCommands('src/commands');
 
 const cooldowns = new Discord.Collection();
 
-client.on('ready', () => {
+Client.on('ready', () => {
   console.log('Client is ready!');
 });
 
 
-client.on('message', message => {
+Client.on('message', message => {
   // Checks if the message has to be processed.
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (!message.content.startsWith(Config.prefix) || message.author.bot) return;
 
   // Parses the message using spaces and tabs.
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(Config.prefix.length).trim().split(/ +/g);
   const commandName = args.shift().toLowerCase();
 
   // Checks that the command exists
-  if (!client.commands.has(commandName)) return;
+  if (!Client.commands.has(commandName)) return;
 
-  const command = client.commands.get(commandName);
+  const command = Client.commands.get(commandName);
 
   // Checks if the command is server-only
   if (command.guildOnly && message.channel.type !== 'text') {
@@ -44,7 +43,7 @@ client.on('message', message => {
     let reply = `Some arguments are missing, ${message.author}!`;
 
     if (command.usage) {
-      reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``;
+      reply += `\nUsage: \`${Config.prefix}${command.name} ${command.usage}\``;
     }
 
     return message.channel.send(reply);
@@ -57,7 +56,7 @@ client.on('message', message => {
   }
 
   const now = Date.now();
-  const cooldownAmount = (command.cooldown || env.defaultCooldown) * 1000;
+  const cooldownAmount = (command.cooldown || Config.defaultCooldown) * 1000;
 
   const timestamps = cooldowns.get(command.name);
 
@@ -89,12 +88,12 @@ client.on('message', message => {
 
 });
 
-client.login(secrets.token);
+Client.login(Secrets.token);
 
 function addCommands(folderPath) {
   const commandFiles = fs.readdirSync(folderPath);
   for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
-    client.commands.set(command.name.toLowerCase(), command);
+    Client.commands.set(command.name.toLowerCase(), command);
   }
 }

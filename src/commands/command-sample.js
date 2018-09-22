@@ -12,12 +12,12 @@
  * execute(message, args): this is the fun part, where all the logic goes. It uses the Message and the arguments passed to the command.
  */
 module.exports = {
-  name: 'CoolCommand',
+  name: 'coolcommand',
   description: 'Description of my awesome command!',
   args: true,
   usage: `<${this.name}> <arg1> <arg2>`,
   cooldown: 10,
   execute(message, args) {
-    message.channel.send('I am test 1');
+    message.channel.send('Live reload shh!');
   }
 };

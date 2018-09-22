@@ -1,4 +1,4 @@
-const { prefix, defaultCooldown } = require('../../config.json');
+import { Config } from '../../config';
 
 module.exports = {
   name: 'help',
@@ -12,7 +12,7 @@ module.exports = {
     if (!args.length) {
       data.push('Here is the list of available commands:\n');
       data.push(commands.map(command => `\`${command.name}\``).join('\n\n'));
-      data.push(`\nSend \`${prefix}help ${this.usage}\` for more information about a specific command.`);
+      data.push(`\nSend \`${Config.prefix}help <command>\` for more information about a specific command.`);
     }
 
     else {
@@ -25,8 +25,8 @@ module.exports = {
       data.push(`**Name:** ${command.name}`);
 
       if (command.description) data.push(`**Description:** ${command.description}`);
-      if (command.usage) data.push(`**Usage:** \`${prefix}${command.name} ${command.usage}\``);
-      data.push(`**Cooldown:** ${command.cooldown || defaultCooldown } second(s)`);
+      if (command.usage) data.push(`**Usage:** \`${Config.prefix}${command.name} ${command.usage}\``);
+      data.push(`**Cooldown:** ${command.cooldown || Config.defaultCooldown } second(s)`);
     }
 
     message.channel.send(data);

@@ -1,0 +1,1 @@
+{"version":3,"file":"card.model.js","sourceRoot":"","sources":["../../../src/models/card.model.ts"],"names":[],"mappings":";;AAAA,mCAAsC;AAItC,MAAa,IAAI;IAYb,YAAY,IAAoB;QAC5B,qBAAY,CAAC,IAAI,EAAE,IAAI,EAAE,IAAI,CAAC,OAAO,CAAC,CAAC;IAC3C,CAAC;;AAZuB,YAAO,GAAS;IACrC,KAAK,EAAE,SAAS;IAChB,KAAK,EAAE,SAAS;IAChB,MAAM,EAAE,KAAK;CACf,CAAC;AANN,oBAeC"}
