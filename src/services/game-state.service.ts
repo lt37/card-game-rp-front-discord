@@ -2,6 +2,7 @@ import { GameState } from '../models/game-state.model';
 import { Player } from '../models/player.model';
 import { PlayerService } from './player.service';
 import { CardService } from './card.service';
+import { Role } from '../models/role.model';
 
 export class GameStateService {
 
@@ -10,7 +11,7 @@ export class GameStateService {
     private playerService: PlayerService;
     private cardService: CardService;
 
-    private gameState: GameState;
+    gameState: GameState;
 
     public static Instance() {
         if (!GameStateService.instance) {
@@ -21,6 +22,7 @@ export class GameStateService {
     }
 
     private constructor() {
+        this.gameState = GameState.INITIALIZING;
         this.playerService = PlayerService.Instance();
         this.cardService = CardService.Instance();
     }
@@ -30,5 +32,22 @@ export class GameStateService {
         this.playerService.resetPlayers();
         this.playerService.addPlayers(players);
         this.cardService.generateDeck();
+    }
+
+    startRound() {
+        this.drawCardsForEveryone();
+        this.gameState = GameState.PICKING_CARDS_TO_PUT_DOWN;
+    }
+
+    private drawCardsForEveryone() {
+        let players = this.playerService.getPlayers();
+        players.forEach(player => {
+            let maxCardsInHand = 3;
+            if (player.role === Role.ALPHA) {
+                maxCardsInHand = 6;
+            }
+
+            player.hand = player.hand.concat(this.cardService.draw(maxCardsInHand - player.hand.length));
+        });
     }
 }

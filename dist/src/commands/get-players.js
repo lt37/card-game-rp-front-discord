@@ -7,8 +7,8 @@ module.exports = {
     description: 'Gets all players',
     usage: `<${this.name}>`,
     execute(message, args) {
-        let response = `List of players:`;
-        player_service_1.PlayerService.Instance().getPlayers().forEach(player => response += `${index_1.Client.users.get(player.id)}\n`);
+        let response = `List of players:\n`;
+        player_service_1.PlayerService.Instance().getPlayers().forEach((player, index) => response += `${index + 1}: ${index_1.Client.users.get(player.id)} (${player.role})\n`);
         message.channel.send(response);
     }
 };

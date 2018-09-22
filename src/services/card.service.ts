@@ -1,6 +1,7 @@
 import { Card } from '../models/card.model';
 import { CardColor } from '../models/card-color.model';
 import { CardValue } from '../models/card-value.model';
+import { Arrays } from '../utils/arrays';
 
 export class CardService {
 
@@ -38,7 +39,12 @@ export class CardService {
             });
         });
 
+        Arrays.shuffle(this.deck);
         return this.deck;
+    }
+
+    draw(amount: number): Card[] {
+        return this.deck.splice(0, amount);
     }
 
     resetDeck() {

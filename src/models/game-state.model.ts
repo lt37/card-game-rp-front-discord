@@ -1,3 +1,4 @@
 export enum GameState {
-    INITIALIZING
+    INITIALIZING,
+    PICKING_CARDS_TO_PUT_DOWN
 }

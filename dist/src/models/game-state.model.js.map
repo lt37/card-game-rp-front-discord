@@ -1,1 +1,1 @@
-{"version":3,"file":"game-state.model.js","sourceRoot":"","sources":["../../../src/models/game-state.model.ts"],"names":[],"mappings":";;AAAA,IAAY,SAEX;AAFD,WAAY,SAAS;IACjB,yDAAY,CAAA;AAChB,CAAC,EAFW,SAAS,GAAT,iBAAS,KAAT,iBAAS,QAEpB"}
+{"version":3,"file":"game-state.model.js","sourceRoot":"","sources":["../../../src/models/game-state.model.ts"],"names":[],"mappings":";;AAAA,IAAY,SAGX;AAHD,WAAY,SAAS;IACjB,yDAAY,CAAA;IACZ,mFAAyB,CAAA;AAC7B,CAAC,EAHW,SAAS,GAAT,iBAAS,KAAT,iBAAS,QAGpB"}

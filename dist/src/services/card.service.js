@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const card_model_1 = require("../models/card.model");
 const card_color_model_1 = require("../models/card-color.model");
 const card_value_model_1 = require("../models/card-value.model");
+const arrays_1 = require("../utils/arrays");
 class CardService {
     static Instance() {
         if (!CardService.instance) {
@@ -28,7 +29,11 @@ class CardService {
                 }));
             });
         });
+        arrays_1.Arrays.shuffle(this.deck);
         return this.deck;
+    }
+    draw(amount) {
+        return this.deck.splice(0, amount);
     }
     resetDeck() {
         this.deck = [];
